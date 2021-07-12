@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="474.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.listController">
+   <children>
+      <ListView fx:id="listTitles" layoutX="62.0" layoutY="31.0" prefHeight="203.0" prefWidth="500.0" />
+      <TextField fx:id="listTitle" layoutX="232.0" layoutY="253.0" promptText="TodoListTitle" />
+      <Button fx:id="addList" layoutX="62.0" layoutY="294.0" mnemonicParsing="false" onMouseClicked="#addList" prefHeight="62.0" prefWidth="137.0" text="Add" />
+      <Button fx:id="removeList" layoutX="425.0" layoutY="294.0" mnemonicParsing="false" onMouseClicked="#removeList" prefHeight="62.0" prefWidth="137.0" text="Remove" />
+      <Button fx:id="editList" layoutX="243.0" layoutY="294.0" mnemonicParsing="false" onMouseClicked="#editList" prefHeight="62.0" prefWidth="137.0" text="Edit" />
+      <Button fx:id="editListItems" layoutX="453.0" layoutY="405.0" mnemonicParsing="false" onAction="#changeScene" prefHeight="44.0" prefWidth="109.0" text="editListItems" />
+   </children>
+</AnchorPane>
