@@ -32,10 +32,10 @@ public class listController {
     @FXML
     public void addList(MouseEvent mouseEvent) {
         listTitles.getItems().add(listTitle.getText());
+        listTitles.setMaxWidth(256);
     }
     @FXML
     public void editList(MouseEvent mouseEvent){
-        listTitles.setEditable(true);
 
     }
     @FXML
