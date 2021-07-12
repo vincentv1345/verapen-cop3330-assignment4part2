@@ -6,114 +6,86 @@ class Main{
     start()
 }
 class todoListsController{
-String makeTodoList()
-String addListDataBase()
-void addTodoList()
-void removeTodoList()
-}
-class todoListsMaker{
-String makeTitle()
-int getCapacity()
-void addItem()
-
+    @FXML
+    private ListView<String> listTitles;
+    @FXML
+    private TextField listTitle;
+    @FXML
+    private Button addList;
+    @FXML
+    private Button removeList;
+    @FXML
+    private Button editList;
+    void removeList(MouseEvent event)
+    public void addList(MouseEvent mouseEvent)
+    public void editList(MouseEvent mouseEvent)
 }
 class item{
-String getItem()
-void setItem()
-int itemNumber
-getItem()
-void setItem()
-String description()
-String date()
-String dueDate()
-int getItemNumber()
-void setItemNumber()
-}
-class itemCompletion{
-boolean itemStatus
-checkItemStatus()
-}
-class capacity{
-int numLists
-boolean containsItems()
-int getCapacity()
-void setCapacity()
+ private SimpleStringProperty item;
+    private SimpleStringProperty description;
+    private LocalDate dueDate;
+    private CheckBox completionStatus;
+    public item(String item, String description, LocalDate dueDate, CheckBox completionStatus)
+    public String getItem()
+    public SimpleStringProperty itemProperty()
+    public void setItem(String item)
+    public String getDescription()
+    public SimpleStringProperty descriptionProperty()
+    public void setDescription(String description)
 }
 class editItemController{
-String []itemArray
-void saveArray()
+ @FXML
+    private Button addDate;
+    @FXML
+    private Button addItem;
+    @FXML
+    private Button addDescription;
+    @FXML
+    private Button removeItem;
+    @FXML
+    private Button editDescription;
+    @FXML
+    private Button editDate;
+    @FXML
+    private TextField item;
+    @FXML
+    private TextField description;
+    @FXML
+    private TextField date;
+    @FXML
+    private ListView<String> itemList;
+    @FXML
+    private ListView<String> dateList;
+    @FXML
+    private ListView<String> descriptionList;
+    @FXML
+    private TableView<item> Tableview;
+    @FXML
+    private TableColumn<item, String> itemColumn;
+    @FXML
+    private TableColumn<item, String> descriptionColumn;
+    @FXML
+    private TableColumn<item, LocalDate> dueDateColumn;
+    @FXML
+    private TableColumn<item, CheckBox> completionStatusColumn;
+    @FXML
+    private CheckBox getCompletionStatus;
+    @FXML
+    private CheckBox status;
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
+    public void changeScene(ActionEvent event)
+    public ObservableList<item> getItems()
+    public void addDate(ActionEvent event)
+    public void addDescription(ActionEvent event)
+    public ListView<String> addItem(ActionEvent event)
+    public void removeItem(MouseEvent mouseEvent)
+    public void editDescription(MouseEvent mouseEvent)
+    public void editDate(MouseEvent mouseEvent)
 }
-class title{
-String title
-String setListTitle
-String getTitle
-String setTitle(title)
-void getTitle(title)
-}
-class Date{
-String date;
-DateTimeFormatter d
-LocalTimeNow current
-ofPattern()
-now()
-format()
-String makeCurrentDate()
-}
-class todoListDataBase{
-import java.util.*;
-final int MaxLists
-int numOfTodoLists
-boolean overLimit
-boolean status()
-String[] todoLists
-String[] itemList
-boolean checkListStatus()
-}
-class editTodoList{
-String newItem
-String editTitle
-String editDueDate()
-String editTitle()
-void addItemToList(newItem)
-void editDescription(item)
-}
-class displayInformation{
-String List
-String[] items()
-String incompleteItem
-printList()
-printExistingItems()
-printIncompleteItem()
-checkItemCompleted()
-}
-class saveStorage{
-void save()
-void checkLoadToDoList()
-void load()
-}
-class itemNumber{
-boolean check
-int itemNumber
-boolean checkItem()
-}
-class itemDescription{
-String itemDescription
-String getItemDescription(itemDescription)
-String setItemDescription(itemDescription)
-}
+
 Main <|-- todoListsController
 todoListsController <|-- editItemController
-javafx.todoLists <|-- Main
-todoListsMaker <|-- item
-todoListsMaker <|-- capacity
-todoListsMaker <|-- title
-item <|-- Date
-item <|-- itemNumber
-item <-- itemDescription
-todoListsController <|-- todoListDataBase
-todoListDataBase <|-- editTodoList
-todoListDataBase <|-- displayInformation
-displayInformation <|-- itemCompletion
-todoListDataBase <|-- saveStorage
-todoListsController <|-- editItemController
+javafx.Main <|-- Main
+editItemController <|-- item
 @enduml

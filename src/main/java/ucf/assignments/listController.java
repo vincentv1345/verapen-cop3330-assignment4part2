@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -24,10 +25,7 @@ public class listController {
     @FXML
     private Button removeList;
 
-    @FXML
-    private Button editList;
-
-    @FXML void removeList(MouseEvent event){
+    @FXML public void removeList(MouseEvent event){
         int itemID = listTitles.getSelectionModel().getSelectedIndex();
         listTitles.getItems().remove(itemID);
     }
@@ -37,6 +35,7 @@ public class listController {
     }
     @FXML
     public void editList(MouseEvent mouseEvent){
+        listTitles.setEditable(true);
 
     }
     @FXML
