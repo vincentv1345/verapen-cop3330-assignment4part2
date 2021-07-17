@@ -80,20 +80,33 @@ public class editItemController implements Initializable {
     public void getCompletionStatus(){
 
     }
+
     public void addButton(ActionEvent event){
-        ObservableList<item> item = FXCollections.observableArrayList();
-        description.setMaxWidth(256);
-        item newItem = new item(itemName.getText(), description.getText(), date.getValue(), status);
-        CheckBox check = new CheckBox();
-        Tableview.getItems().add(newItem);
+        try {
+            ObservableList<item> item = Tableview.getItems();
+            item newItem = new item(itemName.getText(), description.getText(), date.getValue(), status);
+            CheckBox check = new CheckBox();
+            String checkDescription = description.getText();
+            int descriptionLength = checkDescription.length();
+            if(descriptionLength > 1 || descriptionLength < 256) {
+                Tableview.getItems().add(newItem);
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
+    //gets items from observable list
     public ObservableList<item> getItems(){
         ObservableList<item> item = FXCollections.observableArrayList();
         return item;
     }
+    //clear the list using .clear
     public void clearList(){
         Tableview.getItems().clear();
     }
+    //Method to removeItems from List by selecting the items and storing into a temporary array
+    //then removing them with for each loop
     public void removeItem() {
         ObservableList<item> itemSelected = Tableview.getSelectionModel().getSelectedItems();
         ObservableList<item> tempItemArray = Tableview.getItems();
@@ -101,10 +114,12 @@ public class editItemController implements Initializable {
             tempItemArray.remove(item);
         }
     }
+    //edits items from TableView
     public void editItem(TableColumn.CellEditEvent editEvent){
         item itemToBeEdited = Tableview.getSelectionModel().getSelectedItem();
         itemToBeEdited.setItem(editEvent.getNewValue().toString());
     }
+    //edits Description from Table View
     public void editDescription(TableColumn.CellEditEvent editEvent) {
         item descriptionToBeEdited = Tableview.getSelectionModel().getSelectedItem();
         descriptionToBeEdited.setDescription(editEvent.getNewValue().toString());
