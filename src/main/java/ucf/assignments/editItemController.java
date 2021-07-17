@@ -23,8 +23,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 public class editItemController implements Initializable {
+    @FXML
+    private Button clearList;
     @FXML
     private TextField itemName;
     @FXML
@@ -64,11 +67,12 @@ public class editItemController implements Initializable {
         Tableview.setEditable(true);
         itemColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         descriptionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        Tableview.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
     public void changeScene(ActionEvent event) throws IOException {
         Parent itemParent = FXMLLoader.load(getClass().getResource("todoListsController.fxml"));
         Scene editItemScene = new Scene(itemParent);
-
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(editItemScene);
         stage.show();
@@ -87,9 +91,14 @@ public class editItemController implements Initializable {
         ObservableList<item> item = FXCollections.observableArrayList();
         return item;
     }
-
-    public void removeItem(MouseEvent mouseEvent) {
-
+    public void clearList(){
+        ObservableList<item> tempItemArray = Tableview.getItems();
+        Tableview.getItems().clear();
+    }
+    public void removeItem() {
+        ObservableList<item> itemSelected = Tableview.getSelectionModel().getSelectedItems();
+        ObservableList<item> tempItemArray = Tableview.getItems();
+        tempItemArray.remove(itemSelected);
     }
     public void editItem(TableColumn.CellEditEvent editEvent){
         item itemToBeEdited = Tableview.getSelectionModel().getSelectedItem();

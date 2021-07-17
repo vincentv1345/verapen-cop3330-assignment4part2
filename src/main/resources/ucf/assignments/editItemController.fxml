@@ -17,10 +17,12 @@
             <TableColumn fx:id="completionStatusColumn" prefWidth="81.0" text="Complete" />
         </columns>
       </TableView>
-      <Button fx:id="backButton" layoutX="589.0" layoutY="398.0" mnemonicParsing="false" onAction="#changeScene" text="Back" />
+      <Button fx:id="backButton" layoutX="74.0" layoutY="422.0" mnemonicParsing="false" onAction="#changeScene" text="Back" />
       <TextField fx:id="description" layoutX="223.0" layoutY="291.0" promptText="Add itemDescription" />
       <TextField fx:id="itemName" layoutX="29.0" layoutY="292.0" prefHeight="26.0" prefWidth="112.0" promptText="Add ItemName" />
-      <Button layoutX="580.0" layoutY="292.0" mnemonicParsing="false" onAction="#addButton" text="addItem" />
+      <Button layoutX="580.0" layoutY="292.0" mnemonicParsing="false" onAction="#addButton" text="Add Item" />
       <DatePicker fx:id="date" layoutX="413.0" layoutY="291.0" prefHeight="26.0" prefWidth="145.0" promptText="Date" />
+      <Button layoutX="558.0" layoutY="337.0" mnemonicParsing="false" onAction="#removeItem" text="Remove Item" />
+      <Button layoutX="575.0" layoutY="396.0" mnemonicParsing="false" onAction="#clearList" text="Clear list" />
    </children>
 </AnchorPane>
