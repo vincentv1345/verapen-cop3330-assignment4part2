@@ -1,5 +1,6 @@
 package ucf.assignments;
 import javafx.beans.Observable;
+import javafx.scene.control.DatePicker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,23 +24,15 @@ import java.time.Month;
 import java.util.ResourceBundle;
 public class editItemController implements Initializable {
     @FXML
-    private Button addDate;
-    @FXML
-    private Button addItem;
-    @FXML
-    private Button addDescription;
-    @FXML
-    private Button removeItem;
-    @FXML
-    private Button editDescription;
-    @FXML
-    private Button editDate;
-    @FXML
     private TextField item;
+    @FXML
+    private TextField itemName;
     @FXML
     private TextField description;
     @FXML
-    private TextField date;
+    private DatePicker date;
+    @FXML
+    private Label selectDate;
     @FXML
     private ListView<String> itemList;
     @FXML
@@ -80,19 +73,19 @@ public class editItemController implements Initializable {
     public void getCompletionStatus(){
 
     }
+    public void addButton(ActionEvent event){
+        ObservableList<item> item = FXCollections.observableArrayList();
+        item newItem = new item(itemName.getText(), description.getText(), date.getValue(), status);
+        CheckBox check = new CheckBox();
+        Tableview.getItems().add(newItem);
+    }
     public ObservableList<item> getItems(){
         ObservableList<item> item = FXCollections.observableArrayList();
             item.add(new item("person", "sgsdf", LocalDate.of(2007, Month.NOVEMBER, 13), status));
             CheckBox check = new CheckBox();
         return item;
     }
-
-    public void addDate(ActionEvent event) {
-        itemList.getItems().add(item.getText());
-    }
-
     public void addDescription(ActionEvent event) {
-        descriptionList.getItems().add(description.getText());
     }
 
     public ListView<String> addItem(ActionEvent event) {
@@ -101,17 +94,13 @@ public class editItemController implements Initializable {
     }
 
     public void removeItem(MouseEvent mouseEvent) {
-        int itemID = itemList.getSelectionModel().getSelectedIndex();
-        itemList.getItems().remove(itemID);
+
     }
 
     public void editDescription(MouseEvent mouseEvent) {
-        itemList.setEditable(true);
-        itemList.setCellFactory(TextFieldListCell.forListView());
+
     }
 
     public void editDate(MouseEvent mouseEvent) {
-        dateList.setEditable(true);
-        dateList.setCellFactory(TextFieldListCell.forListView());
     }
 }

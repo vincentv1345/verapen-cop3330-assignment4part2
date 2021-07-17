@@ -13,7 +13,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("todoListsController.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("editItemController.fxml"));
         primaryStage.setTitle("List");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
