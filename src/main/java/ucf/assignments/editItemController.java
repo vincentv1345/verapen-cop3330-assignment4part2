@@ -1,5 +1,6 @@
 package ucf.assignments;
 import javafx.beans.Observable;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.DatePicker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.fxml.Initializable;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldListCell;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.time.LocalDate;
@@ -23,8 +25,6 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.ResourceBundle;
 public class editItemController implements Initializable {
-    @FXML
-    private TextField item;
     @FXML
     private TextField itemName;
     @FXML
@@ -61,6 +61,9 @@ public class editItemController implements Initializable {
         completionStatusColumn.setCellValueFactory(new PropertyValueFactory<item, CheckBox>("completionStatus"));
 
         Tableview.setItems(getItems());
+        Tableview.setEditable(true);
+        itemColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        descriptionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
     public void changeScene(ActionEvent event) throws IOException {
         Parent itemParent = FXMLLoader.load(getClass().getResource("todoListsController.fxml"));
@@ -75,32 +78,29 @@ public class editItemController implements Initializable {
     }
     public void addButton(ActionEvent event){
         ObservableList<item> item = FXCollections.observableArrayList();
+        description.setMaxWidth(256);
         item newItem = new item(itemName.getText(), description.getText(), date.getValue(), status);
         CheckBox check = new CheckBox();
         Tableview.getItems().add(newItem);
     }
     public ObservableList<item> getItems(){
         ObservableList<item> item = FXCollections.observableArrayList();
-            item.add(new item("person", "sgsdf", LocalDate.of(2007, Month.NOVEMBER, 13), status));
-            CheckBox check = new CheckBox();
         return item;
-    }
-    public void addDescription(ActionEvent event) {
-    }
-
-    public ListView<String> addItem(ActionEvent event) {
-        itemList.getItems().add(item.getText());
-        return itemList;
     }
 
     public void removeItem(MouseEvent mouseEvent) {
 
     }
-
-    public void editDescription(MouseEvent mouseEvent) {
-
+    public void editItem(TableColumn.CellEditEvent editEvent){
+        item itemToBeEdited = Tableview.getSelectionModel().getSelectedItem();
+        itemToBeEdited.setItem(editEvent.getNewValue().toString());
+    }
+    public void editDescription(TableColumn.CellEditEvent editEvent) {
+        item descriptionToBeEdited = Tableview.getSelectionModel().getSelectedItem();
+        descriptionToBeEdited.setDescription(editEvent.getNewValue().toString());
     }
 
-    public void editDate(MouseEvent mouseEvent) {
+    public void editDate(TableColumn.CellEditEvent editEvent) {
+        item dateToBeEdited = Tableview.getSelectionModel().getSelectedItem();
     }
 }
