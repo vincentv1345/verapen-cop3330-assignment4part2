@@ -68,7 +68,7 @@ public class editItemController implements Initializable {
         itemColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         descriptionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        Tableview.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        Tableview.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }
     public void changeScene(ActionEvent event) throws IOException {
         Parent itemParent = FXMLLoader.load(getClass().getResource("todoListsController.fxml"));
@@ -92,13 +92,14 @@ public class editItemController implements Initializable {
         return item;
     }
     public void clearList(){
-        ObservableList<item> tempItemArray = Tableview.getItems();
         Tableview.getItems().clear();
     }
     public void removeItem() {
         ObservableList<item> itemSelected = Tableview.getSelectionModel().getSelectedItems();
         ObservableList<item> tempItemArray = Tableview.getItems();
-        tempItemArray.remove(itemSelected);
+        for(item item : itemSelected){
+            tempItemArray.remove(item);
+        }
     }
     public void editItem(TableColumn.CellEditEvent editEvent){
         item itemToBeEdited = Tableview.getSelectionModel().getSelectedItem();
